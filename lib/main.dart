@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_user_app/app/helper/dependancy.dart';
 import 'package:food_user_app/firebase_options.dart';
-import 'package:food_user_app/screens/home_screen.dart';
+import 'package:food_user_app/app/screens/home_screen.dart';
 import 'package:get/get.dart';
 
 Future<void> main() async {
