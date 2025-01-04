@@ -1,7 +1,6 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:food_user_app/app/screens/home/widgets/banner.dart';
 import 'package:food_user_app/app/utils/font_size.dart';
-import 'package:food_user_app/app/utils/images.dart';
 import 'package:food_user_app/app/utils/padding_size.dart';
 import 'package:food_user_app/app/utils/radius_size.dart';
 import 'package:food_user_app/app/utils/style.dart';
@@ -11,7 +10,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> banner = [Images.banner1, Images.banner2];
     return Scaffold(
       // appBar: AppBar(
       //   title: Text('Home Page'),
@@ -66,7 +64,7 @@ class HomePage extends StatelessWidget {
                   ), 
                   Container(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                      color: Theme.of(context).disabledColor.withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     padding: const EdgeInsets.all(PaddingSize.small),
@@ -77,39 +75,13 @@ class HomePage extends StatelessWidget {
             ),
 
             SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: PaddingSize.medium),
-                child: CarouselSlider(
-                  options: CarouselOptions(
-                    height: 150.0,
-                    autoPlay: true,
-                    viewportFraction: 0.95,
-                    aspectRatio: 2.5,
-                    enlargeFactor: 0.3,
-                    enlargeCenterPage: true,
-                    disableCenter: true,
-                  ),
-                  items: banner.map((i) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: EdgeInsets.symmetric(horizontal: 5.0),
-                          decoration: BoxDecoration(
-                            color: Colors.amber,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(i, fit: BoxFit.cover),
-                          ),
-                          // child: Text('text $i', style: TextStyle(fontSize: 16.0),)
-                        );
-                      },
-                    );
-                  }).toList(),
-                ),
-              ),
+              child: Column(spacing: PaddingSize.medium, children: [
+                
+                const SizedBox(height: PaddingSize.extraSmall),
+
+                BannerWidget(),
+                // const SizedBox(height: PaddingSize.medium),
+              ]),
             ),
         
             SliverToBoxAdapter(
