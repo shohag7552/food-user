@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_user_app/app/screens/home/widgets/banner.dart';
+import 'package:food_user_app/app/screens/home/widgets/category_product.dart';
 import 'package:food_user_app/app/screens/home/widgets/popular_foods.dart';
 import 'package:food_user_app/app/utils/font_size.dart';
 import 'package:food_user_app/app/utils/padding_size.dart';

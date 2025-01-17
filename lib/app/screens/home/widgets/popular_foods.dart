@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_user_app/app/common/local_data.dart/food.dart';
 import 'package:food_user_app/app/common/widgets/custom_network_image.dart';
+import 'package:food_user_app/app/utils/font_size.dart';
 import 'package:food_user_app/app/utils/padding_size.dart';
 import 'package:food_user_app/app/utils/style.dart';
 
@@ -44,7 +45,9 @@ const PopularFoods({super.key});
                   ),
                   const SizedBox(height: 5),
                   Text(popularFoods[index].name, style: fontStyleMedium),
-                  Text('\$${popularFoods[index].price}', style: fontStyleNormal),
+                  Text('\$${popularFoods[index].price}', style: fontStyleNormal.copyWith(fontSize: FontSize.small)),
+                  const SizedBox(height: PaddingSize.small),
+                  
                 ]),
               );
             },
