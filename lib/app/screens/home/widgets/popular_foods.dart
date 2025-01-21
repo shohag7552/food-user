@@ -33,7 +33,7 @@ const PopularFoods({super.key});
                 decoration: BoxDecoration(
                   color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: [BoxShadow(color: Theme.of(context).disabledColor.withValues(alpha: 0.2), blurRadius: 5)],
+                  boxShadow: [BoxShadow(color: Theme.of(context).disabledColor.withValues(alpha: 0.1), blurRadius: 5)],
                 ),
                 margin: const EdgeInsets.all(PaddingSize.small),
                 child: Column(children: [

@@ -4,12 +4,13 @@ class CustomNetworkImage extends StatelessWidget {
   final String image;
   final double height;
   final double width;
-  const CustomNetworkImage({super.key, required this.image, this.height = 20, this.width = 20});
+  final BoxFit? fit;
+  const CustomNetworkImage({super.key, required this.image, this.height = 20, this.width = 20, this.fit});
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl: image, height: height, width: width, fit: BoxFit.cover,
+      imageUrl: image, height: height, width: width, fit: fit ?? BoxFit.cover,
       placeholder: (context, url) => const CircularProgressIndicator(),
       errorWidget: (context, url, error) => const Icon(Icons.error),
     );

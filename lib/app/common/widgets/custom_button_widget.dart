@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:food_user_app/app/utils/font_size.dart';
 import 'package:food_user_app/app/utils/padding_size.dart';
 import 'package:food_user_app/app/utils/style.dart';
-import 'package:get/get.dart';
 
 class CustomButtonWidget extends StatelessWidget {
   final Function? onPressed;

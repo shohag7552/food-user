@@ -1,109 +1,102 @@
 import 'package:flutter/material.dart';
+import 'package:food_user_app/app/common/local_data.dart/category_food.dart';
+import 'package:food_user_app/app/common/models/category_wise_food.dart';
+import 'package:food_user_app/app/common/widgets/custom_network_image.dart';
+import 'package:food_user_app/app/utils/font_size.dart';
+import 'package:food_user_app/app/utils/padding_size.dart';
+import 'package:food_user_app/app/utils/style.dart';
+import 'package:visibility_detector/visibility_detector.dart';
+class CategoryProduct extends StatefulWidget {
+  final List<dynamic> tabInfoList;
+  final TabController categoryTabController;
+  const CategoryProduct({super.key, required this.tabInfoList, required this.categoryTabController});
 
-class TabBarScrollSync extends StatefulWidget {
   @override
-  _TabBarScrollSyncState createState() => _TabBarScrollSyncState();
+  State<CategoryProduct> createState() => _CategoryProductState();
 }
 
-class _TabBarScrollSyncState extends State<TabBarScrollSync>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-  final ScrollController _scrollController = ScrollController();
+class _CategoryProductState extends State<CategoryProduct> with SingleTickerProviderStateMixin {
 
-  // Section offsets for scroll points
-  final List<double> _scrollOffsets = [];
-
-  // Example sections
-  final List<String> sections = ["Section 1", "Section 2", "Section 3", "Section 4"];
-
-  @override
-  void initState() {
-    super.initState();
-
-    // Initialize TabController
-    _tabController = TabController(length: sections.length, vsync: this);
-
-    // Listen to TabBar changes and scroll to the corresponding section
-    _tabController.addListener(() {
-      if (_tabController.indexIsChanging) {
-        _scrollToSection(_tabController.index);
-      }
-    });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      // Calculate scroll offsets after layout build
-      _calculateScrollOffsets();
-    });
-
-    // Listen to ScrollController to update TabBar index while scrolling
-    _scrollController.addListener(() {
-      _updateTabIndexOnScroll();
-    });
-  }
-
-  // Calculate the vertical offsets for each section
-  void _calculateScrollOffsets() {
-    double currentOffset = 0.0;
-    for (int i = 0; i < sections.length; i++) {
-      _scrollOffsets.add(currentOffset);
-      currentOffset += 200.0; // Example height for each section
-    }
-  }
-
-  // Scroll to the corresponding section
-  void _scrollToSection(int index) {
-    if (index < _scrollOffsets.length) {
-      _scrollController.animateTo(
-        _scrollOffsets[index],
-        duration: Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
-
-  // Update TabBar index when scrolling
-  void _updateTabIndexOnScroll() {
-    for (int i = 0; i < _scrollOffsets.length - 1; i++) {
-      if (_scrollController.offset >= _scrollOffsets[i] &&
-          _scrollController.offset < _scrollOffsets[i + 1]) {
-        _tabController.animateTo(i, duration: Duration(milliseconds: 100));
-        break;
-      }
-    }
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    _scrollController.dispose();
-    super.dispose();
-  }
+  List<CategoryWiseFood> categories = CategoryFood().categories;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("TabBar & Scroll Sync"),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: sections.map((e) => Tab(text: e)).toList(),
-        ),
-      ),
-      body: ListView.builder(
-        controller: _scrollController,
-        itemCount: sections.length,
-        itemBuilder: (context, index) {
-          return Container(
-            height: 600.0, // Example section height
-            color: Colors.primaries[index % Colors.primaries.length].withOpacity(0.3),
-            alignment: Alignment.center,
-            child: Text(
-              sections[index],
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+
+    return ListView.builder(
+      itemCount: categories.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.all(PaddingSize.medium),
+      itemBuilder: (context, index) {
+        return VisibilityDetector(
+          key: widget.tabInfoList[index]['key'],
+          onVisibilityChanged: (VisibilityInfo info) {
+              double screenHeight = MediaQuery.of(context).size.height;
+              double visibleAreaOnScreen =
+                  info.visibleBounds.bottom - info.visibleBounds.top;
+    
+              if (info.visibleFraction > 0.5 ||
+                  visibleAreaOnScreen > screenHeight * 0.5) {
+                widget.categoryTabController.animateTo(index);
+              }
+            },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(categories[index].name, style: fontStyleBold, key: widget.tabInfoList[index]['key'],),
+              const SizedBox(height: PaddingSize.medium),
+                
+              GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // Number of columns
+                mainAxisSpacing: PaddingSize.medium,
+                crossAxisSpacing: PaddingSize.medium, // Spacing between columns
+                childAspectRatio: 0.85, // Aspect ratio of each grid item
+              ),
+              itemCount: categories[index].foodItems.length, // Number of items
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.zero,
+              itemBuilder: (context, i) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).cardColor,
+                    // color: Colors.primaries[i % Colors.primaries.length],
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [BoxShadow(color: Theme.of(context).disabledColor.withValues(alpha: 0.1), blurRadius: 5)],
+                  ),
+                  padding: const EdgeInsets.all(PaddingSize.small),
+                  child: Column(
+                    children: [
+                
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+                          child: CustomNetworkImage(image: categories[index].foodItems[i].image, width: double.infinity, fit: BoxFit.contain,),
+                        ),
+                      ),
+                
+                      Text(
+                        categories[index].foodItems[i].name,
+                        style: fontStyleMedium,
+                      ),
+                
+                      Text(
+                        '\$${categories[index].foodItems[i].price}',
+                        style: fontStyleNormal.copyWith(fontSize: FontSize.small),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
-          );
-        },
-      ),
+                
+            const SizedBox(height: PaddingSize.medium),
+                
+            ],
+          ),
+        );
+      },
     );
   }
 }

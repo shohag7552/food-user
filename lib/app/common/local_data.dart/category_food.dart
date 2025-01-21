@@ -6,7 +6,7 @@ class CategoryFood {
   final List<CategoryWiseFood> categories = [
     CategoryWiseFood(
       id: 1,
-      category: 'Fruits',
+      name: 'Fruits',
       foodItems: [
         FoodItem(
           id: 1,
@@ -63,7 +63,7 @@ class CategoryFood {
 
     CategoryWiseFood(
       id: 2,
-      category: 'Vegetables',
+      name: 'Vegetables',
       foodItems: [
         FoodItem(
           id: 4,
@@ -112,7 +112,7 @@ class CategoryFood {
 
     CategoryWiseFood(
       id: 3,
-      category: 'Meat',
+      name: 'Meat',
       foodItems: [
         FoodItem(
           id: 7,
@@ -161,7 +161,7 @@ class CategoryFood {
 
     CategoryWiseFood(
       id: 4,
-      category: 'Fish',
+      name: 'Fish',
       foodItems: [
         FoodItem(
           id: 10,
@@ -210,7 +210,7 @@ class CategoryFood {
 
     CategoryWiseFood(
       id: 5,
-      category: 'Dairy',
+      name: 'Dairy',
       foodItems: [
         FoodItem(
           id: 13,
@@ -238,7 +238,7 @@ class CategoryFood {
 
     CategoryWiseFood(
       id: 6,
-      category: 'Bakery',
+      name: 'Bakery',
       foodItems: [
         FoodItem(
           id: 16,
@@ -288,7 +288,7 @@ class CategoryFood {
 
     CategoryWiseFood(
       id: 7,
-      category: 'Drinks',
+      name: 'Drinks',
       foodItems: [
         FoodItem(
           id: 19,

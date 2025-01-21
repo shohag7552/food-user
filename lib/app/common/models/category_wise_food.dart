@@ -1,10 +1,10 @@
 class CategoryWiseFood {
-  final String category;
+  final String name;
   final int id;
   final List<FoodItem> foodItems;
 
   CategoryWiseFood({
-    required this.category,
+    required this.name,
     required this.id,
     required this.foodItems,
   });
@@ -14,7 +14,7 @@ class CategoryWiseFood {
     List<FoodItem> foodItemList = list.map((i) => FoodItem.fromJson(i)).toList();
 
     return CategoryWiseFood(
-      category: json['category'],
+      name: json['category'],
       id: json['id'],
       foodItems: foodItemList,
     );
@@ -22,7 +22,7 @@ class CategoryWiseFood {
 
   Map<String, dynamic> toJson() {
     return {
-      'category': category,
+      'category': name,
       'id': id,
       'foodItems': foodItems.map((item) => item.toJson()).toList(),
     };
