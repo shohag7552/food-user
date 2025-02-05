@@ -3,12 +3,12 @@ import 'package:food_user_app/app/common/local_data.dart/category_food.dart';
 import 'package:food_user_app/app/common/models/category_wise_food.dart';
 import 'package:food_user_app/app/screens/home/widgets/banner.dart';
 import 'package:food_user_app/app/screens/home/widgets/category_product.dart';
+import 'package:food_user_app/app/screens/home/widgets/popular_food_design.dart';
 import 'package:food_user_app/app/screens/home/widgets/popular_foods.dart';
 import 'package:food_user_app/app/utils/font_size.dart';
 import 'package:food_user_app/app/utils/padding_size.dart';
 import 'package:food_user_app/app/utils/radius_size.dart';
 import 'package:food_user_app/app/utils/style.dart';
-import 'dart:math' as math;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -127,6 +127,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 const SizedBox(height: PaddingSize.extraSmall),
 
                 BannerWidget(),
+                
+                PopularFoodDesign(),
                 
                 PopularFoods(),
 

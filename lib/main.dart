@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_user_app/app/helper/dependancy.dart';
+import 'package:food_user_app/app/screens/salone/salone_screen.dart';
 import 'package:food_user_app/firebase_options.dart';
 import 'package:food_user_app/app/screens/home/home_screen.dart';
 import 'package:get/get.dart';
@@ -38,8 +39,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // home: TabBarScrollSync(),
-      home: const HomePage(),
+      home: SaloneScreen(),
+      // home: const HomePage(),
     );
   }
 }

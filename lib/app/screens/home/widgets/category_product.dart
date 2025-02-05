@@ -6,6 +6,7 @@ import 'package:food_user_app/app/utils/font_size.dart';
 import 'package:food_user_app/app/utils/padding_size.dart';
 import 'package:food_user_app/app/utils/style.dart';
 import 'package:visibility_detector/visibility_detector.dart';
+
 class CategoryProduct extends StatefulWidget {
   final List<dynamic> tabInfoList;
   final TabController categoryTabController;
@@ -43,7 +44,7 @@ class _CategoryProductState extends State<CategoryProduct> with SingleTickerProv
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(categories[index].name, style: fontStyleBold, key: widget.tabInfoList[index]['key'],),
+              Text(categories[index].name, style: fontStyleBold),
               const SizedBox(height: PaddingSize.medium),
                 
               GridView.builder(
