@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:food_user_app/app/common/local_data.dart/category_food.dart';
 import 'package:food_user_app/app/common/widgets/custom_network_image.dart';
 import 'package:food_user_app/app/utils/font_size.dart';
 import 'package:food_user_app/app/utils/images.dart';
 import 'package:food_user_app/app/utils/padding_size.dart';
 import 'package:food_user_app/app/utils/radius_size.dart';
 import 'package:food_user_app/app/utils/style.dart';
-class SaloneScreen extends StatelessWidget {
+class SaloneScreen extends StatefulWidget {
   const SaloneScreen({super.key});
+
+  @override
+  State<SaloneScreen> createState() => _SaloneScreenState();
+}
+
+class _SaloneScreenState extends State<SaloneScreen> {
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +35,7 @@ class SaloneScreen extends StatelessWidget {
             // ),
 
             SliverPersistentHeader(
-              pinned: true,
+              pinned: false,
               delegate: SliverDelegate(height: 70, child: Container(
                 color: Theme.of(context).colorScheme.surface,
                 padding: const EdgeInsets.only(top: PaddingSize.medium, left: PaddingSize.medium, right: PaddingSize.medium),
@@ -48,11 +56,58 @@ class SaloneScreen extends StatelessWidget {
                       ]),
                     ),
                   ), 
+
                   ClipRRect(
                     borderRadius: BorderRadius.circular(50), 
                     child: CustomNetworkImage(image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D', height: 50, width: 50, fit: BoxFit.cover,),
                   ),
                 ]),
+              )),
+            ),
+
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: SliverDelegate(height: 70, child: Container(
+                color: Theme.of(context).colorScheme.surface,
+                padding: const EdgeInsets.only(top: PaddingSize.medium, left: PaddingSize.medium, right: PaddingSize.medium),
+                child: ListView.builder(itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      setState(() {
+                        _selectedIndex = index;
+                      });
+                    },
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 500),
+                      margin: const EdgeInsets.only(right: PaddingSize.small),
+                      // padding: const EdgeInsets.all(1),
+                      width: index == _selectedIndex ? 120 : 50,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        // shape: BoxShape.circle,
+                        borderRadius: BorderRadius.circular(50),
+                        // border: Border.all(color: Theme.of(context).disabledColor, width: 0.1),
+                      ),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(60),
+                            child: CustomNetworkImage(image: CategoryFood.categories[index].image, width: 50, height: 55, fit: BoxFit.cover),
+                          ),
+
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: PaddingSize.small),
+                              child: Text(CategoryFood.categories[index].name, style: fontStyleNormal.copyWith(fontSize: FontSize.medium, color: Theme.of(context).cardColor), overflow: TextOverflow.ellipsis, maxLines: 1),
+                            ),
+                          ),
+
+                        ],
+                      ),
+                      // child: Text('Category $index', style: fontStyleNormal.copyWith(fontSize: FontSize.medium, color: Theme.of(context).disabledColor)),
+                    ),
+                  );
+                }, itemCount: CategoryFood.categories.length, scrollDirection: Axis.horizontal),
               )),
             ),
 
@@ -63,7 +118,7 @@ class SaloneScreen extends StatelessWidget {
                     title: Text('Item $index'),
                   );
                 },
-                childCount: 1000,
+                childCount: 100,
               ),
             ),
           ],

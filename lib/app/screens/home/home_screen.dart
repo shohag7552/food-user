@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
-  List<CategoryWiseFood> categories = CategoryFood().categories;
+  List<CategoryWiseFood> categories = CategoryFood.categories;
   ScrollController scrollController = ScrollController();
   bool pinAppBar = true;
 

@@ -1,11 +1,13 @@
 class CategoryWiseFood {
   final String name;
   final int id;
+  final String image;
   final List<FoodItem> foodItems;
 
   CategoryWiseFood({
     required this.name,
     required this.id,
+    required this.image,
     required this.foodItems,
   });
 
@@ -16,6 +18,7 @@ class CategoryWiseFood {
     return CategoryWiseFood(
       name: json['category'],
       id: json['id'],
+      image: json['image'],
       foodItems: foodItemList,
     );
   }

@@ -18,7 +18,7 @@ class CategoryProduct extends StatefulWidget {
 
 class _CategoryProductState extends State<CategoryProduct> with SingleTickerProviderStateMixin {
 
-  List<CategoryWiseFood> categories = CategoryFood().categories;
+  List<CategoryWiseFood> categories = CategoryFood.categories;
 
   @override
   Widget build(BuildContext context) {

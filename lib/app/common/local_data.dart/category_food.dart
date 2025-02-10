@@ -3,10 +3,11 @@
 import 'package:food_user_app/app/common/models/category_wise_food.dart';
 
 class CategoryFood {
-  final List<CategoryWiseFood> categories = [
+  static List<CategoryWiseFood> categories = [
     CategoryWiseFood(
       id: 1,
       name: 'Fruits',
+      image: 'https://img.freepik.com/free-photo/colorful-fruits-tasty-fresh-ripe-juicy-white-desk_179666-169.jpg?ga=GA1.1.912905313.1738781170&semt=ais_hybrid',
       foodItems: [
         FoodItem(
           id: 1,
@@ -64,6 +65,7 @@ class CategoryFood {
     CategoryWiseFood(
       id: 2,
       name: 'Vegetables',
+      image: 'https://img.freepik.com/free-photo/basket-full-vegetables_1112-316.jpg?ga=GA1.1.912905313.1738781170&semt=ais_hybrid',
       foodItems: [
         FoodItem(
           id: 4,
@@ -113,6 +115,7 @@ class CategoryFood {
     CategoryWiseFood(
       id: 3,
       name: 'Meat',
+      image: 'https://img.freepik.com/free-photo/raw-steak-white-paper_144627-10268.jpg?ga=GA1.1.912905313.1738781170&semt=ais_hybrid',
       foodItems: [
         FoodItem(
           id: 7,
@@ -162,6 +165,7 @@ class CategoryFood {
     CategoryWiseFood(
       id: 4,
       name: 'Fish',
+      image: 'https://img.freepik.com/free-photo/ilish-fish-southeast-asia_1417-138.jpg?ga=GA1.1.912905313.1738781170&semt=ais_hybrid',
       foodItems: [
         FoodItem(
           id: 10,
@@ -211,6 +215,7 @@ class CategoryFood {
     CategoryWiseFood(
       id: 5,
       name: 'Dairy',
+      image: 'https://img.freepik.com/free-photo/wooden-board-filled-with-various-cheeses-fruits-nuts-crackers_9975-124768.jpg?ga=GA1.1.912905313.1738781170&semt=ais_hybrid',
       foodItems: [
         FoodItem(
           id: 13,
@@ -239,6 +244,7 @@ class CategoryFood {
     CategoryWiseFood(
       id: 6,
       name: 'Bakery',
+      image: 'https://img.freepik.com/free-photo/wicker-basket-overflowing-with-various-types-bread-including-baguettes-rolls-loaves-against-white-background_9975-124506.jpg?ga=GA1.1.912905313.1738781170&semt=ais_hybrid',
       foodItems: [
         FoodItem(
           id: 16,
@@ -289,6 +295,7 @@ class CategoryFood {
     CategoryWiseFood(
       id: 7,
       name: 'Drinks',
+      image: 'https://img.freepik.com/free-photo/fruit-juice-with-kiwi-apple-mason-mug_140725-10534.jpg?ga=GA1.1.912905313.1738781170&semt=ais_hybrid',
       foodItems: [
         FoodItem(
           id: 19,
